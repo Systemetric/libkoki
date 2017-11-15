@@ -24,6 +24,7 @@
 #include <glib.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include <cv.h>
 
 #include "labelling.h"
@@ -275,7 +276,10 @@ static void label_dark_pixel( koki_labelled_image_t *lmg,
 	/* If we get this far, a new region has been found */
 
 	/* Check we do not exceed the maximum number of labels */
-	assert( lmg->aliases->len != KOKI_LABEL_MAX );
+	if ( lmg->aliases->len == KOKI_LABEL_MAX ) {
+		printf("libkoki: warning: too many labels, your resolution is too high!\n");
+		return;
+	}
 
 	label_tmp = lmg->aliases->len + 1;
 	g_array_append_val(lmg->aliases, label_tmp);
