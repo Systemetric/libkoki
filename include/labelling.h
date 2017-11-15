@@ -82,6 +82,7 @@ enum DIRECTION {N, NE, E, SE, S, SW, W, NW};
 typedef struct {
 	koki_point2Di_t min;  /**< the top left corner co-ordinates */
 	koki_point2Di_t max;  /**< the bottom right corner co-ordinates */
+	/* TODO: label_t is now a uint32_t, should this be too? */
 	uint16_t mass;        /**< the number of labelled pixels in the region */
 } koki_clip_region_t;
 
@@ -89,12 +90,12 @@ typedef struct {
 /**
  * @brief A label number
  */
-typedef uint16_t label_t;
+typedef uint32_t label_t;
 
 /**
  * @brief The maximum label number
  */
-#define KOKI_LABEL_MAX 0xffff
+#define KOKI_LABEL_MAX 0xffffffff
 
 /**
  * @brief A structure representing a labelled image
